@@ -1,4 +1,4 @@
-package doe;
+package doe4j;
 
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Tests for Calculator.
  *
- * @see doe.Calculator
+ * @see Calculator
  */
 public class CalculatorTests {
 

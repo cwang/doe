@@ -1,4 +1,4 @@
-package doe;
+package doe4j;
 
 /**
  * Cardinal direction, used in deg-min-sec representation of latitude/longitude measure.

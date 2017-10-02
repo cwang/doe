@@ -1,4 +1,4 @@
-package doe;
+package doe4j;
 
 /**
  * Great-Circle Distance calculator between two points on Earth.

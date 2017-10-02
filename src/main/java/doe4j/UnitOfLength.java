@@ -1,4 +1,4 @@
-package doe;
+package doe4j;
 
 import java.text.MessageFormat;
 
