@@ -14,6 +14,9 @@ public enum CardinalDirection {
     private double sign;
     private String label;
 
+    public static final CardinalDirection[] LATITUDE = {N, S};
+    public static final CardinalDirection[] LONGITUDE = {W, E};
+
     CardinalDirection(double sign, String label) {
         this.sign = sign;
         this.label = label;
