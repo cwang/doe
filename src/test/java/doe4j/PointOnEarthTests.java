@@ -13,7 +13,7 @@ public class PointOnEarthTests {
     String[] legalLats = {"0", "12.34", "-89.99", "90.00", "90 00 00 N", "0 0 0 S"};
     String[] legalLons = {"0", "12.34", "-89.99", "90.00", "90 00 00 W", "0 0 0 E"};
     String[] illegalLats = {"90.01", "-180", "12 34 56 W", "-1 2 S"};
-    String[] illegalLons = {"90.01", "-180", "12 34 56 N", "-1 2 E"};
+    String[] illegalLons = {"180.01", "-200", "12 34 56 N", "-1 2 E"};
     String separator = ",";
 
     @Test

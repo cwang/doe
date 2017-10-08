@@ -21,11 +21,6 @@ public class PointOnEarth implements Serializable {
     private double latitude;
     private double longitude;
 
-    public static final double UPPER_BOUND_DECIMAL_DEGREE = 90d;
-    public static final double LOWER_BOUND_DECIMAL_DEGREE = -90d;
-    public static final double UPPER_BOUND_DEG_MIN_SEC_DIR = 90d;
-    public static final double LOWER_BOUND_DEG_MIN_SEC_DIR = 0d;
-
     public static final String FORMAT_SIGNED_DECIMAL_DEGREE = "{0,number}{1}";
 
     private static final String[] VARS_IN_DEG_MIN_SEC_DIR = {"{1,number}", "{2,number}", "{3,number}", "{0}"};
@@ -36,17 +31,33 @@ public class PointOnEarth implements Serializable {
     public static final String FORMAT_LAT_LON = "{0},{1}";
 
     private enum DegreeType {
-        LATITUDE(CardinalDirection.LATITUDE),
-        LONGITUDE(CardinalDirection.LONGITUDE);
+        LATITUDE(CardinalDirection.LATITUDE, 90d, -90d),
+        LONGITUDE(CardinalDirection.LONGITUDE, 180d, -180d);
 
         private CardinalDirection[] directions;
+        private double upperBound;
+        private double lowerBound;
 
-        DegreeType(CardinalDirection[] directions) {
+        DegreeType(CardinalDirection[] directions, double upperBound, double lowerBound) {
             this.directions = directions;
+            this.upperBound = upperBound;
+            this.lowerBound = lowerBound;
         }
 
         public CardinalDirection[] getDirections() {
             return directions;
+        }
+
+        public double getUpperBound() {
+            return upperBound;
+        }
+
+        public double getLowerBound() {
+            return lowerBound;
+        }
+
+        public boolean bounds(double deg, boolean nonNegative) {
+            return nonNegative ? (deg <= this.getUpperBound() && deg >= 0) : (deg <= this.getUpperBound() && deg >= this.getLowerBound());
         }
 
         public boolean accepts(CardinalDirection dir) {
@@ -155,7 +166,7 @@ public class PointOnEarth implements Serializable {
 
             for (int i = 1; i <= 3; i++) {
                 double deg = new BigDecimal(data[i].toString()).doubleValue();
-                if (deg > UPPER_BOUND_DEG_MIN_SEC_DIR || deg < LOWER_BOUND_DEG_MIN_SEC_DIR) {
+                if (! type.bounds(deg, true)) {
                     throw new IllegalArgumentException("The lat/lon supplied [" + Arrays.asList(data) + "] is out of bound!");
                 }
             }
@@ -170,7 +181,7 @@ public class PointOnEarth implements Serializable {
                 && (data[0] instanceof Double || data[0] instanceof Long)) {
 
             double deg = new BigDecimal(data[0].toString()).doubleValue();
-            if (deg > UPPER_BOUND_DECIMAL_DEGREE || deg < LOWER_BOUND_DECIMAL_DEGREE) {
+            if (! type.bounds(deg, false)) {
                 throw new IllegalArgumentException("The lat/lon supplied [" + Arrays.asList(data) + "] is out of bound!");
             }
         }
