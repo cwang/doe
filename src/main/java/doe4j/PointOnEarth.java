@@ -30,7 +30,7 @@ public class PointOnEarth implements Serializable {
 
     public static final String FORMAT_LAT_LON = "{0},{1}";
 
-    private enum DegreeType {
+    public enum DegreeType {
         LATITUDE(CardinalDirection.LATITUDE, 90d, -90d),
         LONGITUDE(CardinalDirection.LONGITUDE, 180d, -180d);
 
