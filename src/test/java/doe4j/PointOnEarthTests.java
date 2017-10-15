@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static doe4j.PointOnEarth.*;
 import static doe4j.PointOnEarth.DegreeType.*;
 import static org.junit.Assert.*;
 
@@ -68,10 +69,10 @@ public class PointOnEarthTests {
                                 case SYMBOL_DEG_MIN_SEC_DIR:
                                     switch (gt) {
                                         case LATITUDE:
-                                            d = new String[] {"90" + "\u00B0" + "00" + "\u2032" + "00" + "\u2033" + "N", "0" + "\u00B0" + "0" + "\u2032" + "0" + "\u2033" + "S"};
+                                            d = new String[] {"90" + SYM_DEG + "00" + SYM_MIN + "00" + SYM_SEC + "N", "0" + SYM_DEG + "0" + SYM_MIN + "0" + SYM_SEC + "S"};
                                             break;
                                         case LONGITUDE:
-                                            d = new String[] {"90" + "\u00B0" + "00" + "\u2032" + "00" + "\u2033" + "W", "0" + "\u00B0" + "0" + "\u2032" + "0" + "\u2033" + "E"};
+                                            d = new String[] {"90" + SYM_DEG + "00" + SYM_MIN + "00" + SYM_SEC + "W", "0" + SYM_DEG + "0" + SYM_MIN + "0" + SYM_SEC + "E"};
                                             break;
                                     }
                                     break;
@@ -102,10 +103,10 @@ public class PointOnEarthTests {
                                 case SYMBOL_DEG_MIN_SEC_DIR:
                                     switch (gt) {
                                         case LATITUDE:
-                                            d = new String[] {"12" + "\u00B0" + "34" + "\u2032" + "56" + "\u2033" + "W", "-1" + "\u00B0" + "2" + "\u2033" + "S"};
+                                            d = new String[] {"12" + SYM_DEG + "34" + SYM_MIN + "56" + SYM_SEC + "W", "-1" + SYM_DEG + "2" + SYM_SEC + "S", "-3" + SYM_DEG + "4" + SYM_MIN + "S"};
                                             break;
                                         case LONGITUDE:
-                                            d = new String[] {"12" + "\u00B0" + "34" + "\u2032" + "56" + "\u2033" + "N", "-1" + "\u00B0" + "2" + "\u2033" + "E"};
+                                            d = new String[] {"12" + SYM_DEG + "34" + SYM_MIN + "56" + SYM_SEC + "N", "-1" + SYM_DEG + "2" + SYM_SEC + "E", "-3" + SYM_DEG + "4" + SYM_MIN + "E"};
                                             break;
                                     }
                                     break;

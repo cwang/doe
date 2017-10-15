@@ -18,18 +18,28 @@ import java.util.Objects;
  */
 public class PointOnEarth implements Serializable {
 
-    private double latitude;
-    private double longitude;
-
-    public static final String FORMAT_SIGNED_DECIMAL_DEGREE = "{0,number}{1}";
-
-    private static final String[] VARS_IN_DEG_MIN_SEC_DIR = {"{1,number}", "{2,number}", "{3,number}", "{0}"};
-    public static final String FORMAT_SPACED_DEG_MIN_SEC_DIR = String.join(" ", VARS_IN_DEG_MIN_SEC_DIR);
-    public static final String FORMAT_SYMBOL_DEG_MIN_SEC_DIR =
-            VARS_IN_DEG_MIN_SEC_DIR[0] + "\u00B0" + VARS_IN_DEG_MIN_SEC_DIR[1] + "\u2032" + VARS_IN_DEG_MIN_SEC_DIR[2] + "\u2033" + VARS_IN_DEG_MIN_SEC_DIR[3];
+    public static final String SYM_DEG = "\u00B0";
+    public static final String SYM_MIN = "\u2032";
+    public static final String SYM_SEC = "\u2033";
 
     public static final String FORMAT_LAT_LON = "{0},{1}";
 
+    private double latitude;
+    private double longitude;
+
+    private static final String FORMAT_SIGNED_DECIMAL_DEGREE = "{0,number}{1}";
+
+    private static final String[] VARS_IN_DEG_MIN_SEC_DIR = {"{1,number}", "{2,number}", "{3,number}", "{0}"};
+    private static final String FORMAT_SPACED_DEG_MIN_SEC_DIR = String.join(" ", VARS_IN_DEG_MIN_SEC_DIR);
+    private static final String FORMAT_SYMBOL_DEG_MIN_SEC_DIR =
+            VARS_IN_DEG_MIN_SEC_DIR[0] + SYM_DEG + VARS_IN_DEG_MIN_SEC_DIR[1] + SYM_MIN + VARS_IN_DEG_MIN_SEC_DIR[2] + SYM_SEC + VARS_IN_DEG_MIN_SEC_DIR[3];
+
+
+    /**
+     * Types of degree data, commonly known as Latitude and Longitude.
+     *
+     * It also defines the boundary conditions of both degree types.
+     */
     public enum DegreeType {
         LATITUDE(CardinalDirection.LATITUDE, 90d, -90d),
         LONGITUDE(CardinalDirection.LONGITUDE, 180d, -180d);
